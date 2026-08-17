@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store App</title>
+</head>
+<body>
+
+    <h1>Add Product</h1>
+    <form action="addproduct" method="post">
+        Name: <input type="text" name="name"><br><br>
+        Price: <input type="text" name="price"><br><br>
+        Quantity: <input type="text" name="quantity"><br><br>
+        Min Stock Level: <input type="text" name="minStock"><br><br>
+        <input type="submit" value="Add Product">
+    </form>
+
+    <hr>
+
+    <h1>Create Bill</h1>
+<p><a href="createbill">Go to Billing</a></p>
+    <hr>
+
+    <h1>Restock Product</h1>
+    <form action="restock" method="post">
+        Product ID: <input type="text" name="productId"><br><br>
+        Quantity Received: <input type="text" name="quantity"><br><br>
+        <input type="submit" value="Restock">
+    </form>
+
+    <hr>
+
+    <h1>Links</h1>
+    <p><a href="viewproducts">View All Products</a></p>
+    <p><a href="reports">View Reports</a></p>
+
+</body>
+</html>
