@@ -22,11 +22,10 @@ public class RestockServlet extends HttpServlet {
         int productId = Integer.parseInt(request.getParameter("productId"));
         int qty = Integer.parseInt(request.getParameter("quantity"));
 
-        String url = "jdbc:postgresql://localhost:5432/store_db";
-        String user = "postgres";
-        String password = "Anuvardhitha@0608";
-
-        try {
+        String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
+String user = "store_db_8wgw_user";
+String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";      
+  try {
             Class.forName("org.postgresql.Driver");
             Connection conn = DriverManager.getConnection(url, user, password);
             conn.setAutoCommit(false);

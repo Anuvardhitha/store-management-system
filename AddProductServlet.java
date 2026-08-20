@@ -21,14 +21,14 @@ public class AddProductServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         int minStock = Integer.parseInt(request.getParameter("minStock"));
 
-        String url = "jdbc:postgresql://localhost:5432/store_db";
-        String user = "postgres";
-        String password = "Anuvardhitha@0608";
-
+        String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
+String user = "store_db_8wgw_user";
+String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
         try {
+Class.forName("org.postgresql.Driver");
             Connection conn = DriverManager.getConnection(url, user, password);
 
             String sql = "INSERT INTO product (name, price, quantity, min_stock_level) VALUES (?, ?, ?, ?)";

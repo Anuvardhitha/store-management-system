@@ -20,11 +20,10 @@ public class CreateBillServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String url = "jdbc:postgresql://localhost:5432/store_db";
-        String user = "postgres";
-        String password = "Anuvardhitha@0608";
-
-        out.println("<html><body>");
+       String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
+String user = "store_db_8wgw_user";
+String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";        
+out.println("<html><body>");
         out.println("<h2>Available Products</h2>");
         out.println("<table border='1' cellpadding='6'>");
         out.println("<tr><th>ID</th><th>Name</th><th>Price</th><th>Available Qty</th></tr>");
@@ -84,11 +83,9 @@ out.println("</script>");        out.println("<p><a href='index.html'>Back to me
     String[] productIdParams = request.getParameterValues("productId");
     String[] quantityParams = request.getParameterValues("quantity");
 
-    String url = "jdbc:postgresql://localhost:5432/store_db";
-    String user = "postgres";
-    String password = "Anuvardhitha@0608";
-
-    try {
+   String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
+String user = "store_db_8wgw_user";
+String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";    try {
         Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection(url, user, password);
         conn.setAutoCommit(false);
