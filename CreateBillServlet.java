@@ -22,7 +22,7 @@ public class CreateBillServlet extends HttpServlet {
 
         String url = "jdbc:postgresql://localhost:5432/store_db";
         String user = "postgres";
-        String password = "Anuvardhitha@2008";
+        String password = "Anuvardhitha@0608";
 
         out.println("<html><body>");
         out.println("<h2>Available Products</h2>");
@@ -86,7 +86,7 @@ out.println("</script>");        out.println("<p><a href='index.html'>Back to me
 
     String url = "jdbc:postgresql://localhost:5432/store_db";
     String user = "postgres";
-    String password = "Anuvardhitha@2008";
+    String password = "Anuvardhitha@0608";
 
     try {
         Class.forName("org.postgresql.Driver");

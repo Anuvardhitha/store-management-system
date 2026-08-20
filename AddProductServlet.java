@@ -23,7 +23,7 @@ public class AddProductServlet extends HttpServlet {
 
         String url = "jdbc:postgresql://localhost:5432/store_db";
         String user = "postgres";
-        String password = "Anuvardhitha@2008";
+        String password = "Anuvardhitha@0608";
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

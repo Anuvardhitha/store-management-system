@@ -21,7 +21,7 @@ public class ViewProductsServlet extends HttpServlet {
 
         String url = "jdbc:postgresql://localhost:5432/store_db";
         String user = "postgres";
-        String password = "Anuvardhitha@2008"; // Your DB Password
+        String password = "Anuvardhitha@0608"; // Your DB Password
 
         out.println("<html><head><title>Product List</title></head><body>");
         out.println("<h2>Product List</h2>");
