@@ -23,7 +23,8 @@ public class CreateBillServlet extends HttpServlet {
        String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
 String user = "store_db_8wgw_user";
 String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";        
-out.println("<html><body>");
+out.println("<html><head><title>Create Bill</title>" + CSS + "</head><body>");
+out.println("<div class='container'><div class='section'>");
         out.println("<h2>Available Products</h2>");
         out.println("<table border='1' cellpadding='6'>");
         out.println("<tr><th>ID</th><th>Name</th><th>Price</th><th>Available Qty</th></tr>");
@@ -67,9 +68,9 @@ out.println("  var table = document.getElementById('itemsTable');");
 out.println("  var row = table.insertRow(-1);");
 out.println("  row.innerHTML = \"<td><input type='text' name='productId'></td><td><input type='text' name='quantity'></td></tr>\";");
 out.println("}");
-out.println("</script>");        out.println("<p><a href='index.html'>Back to menu</a></p>");
-        out.println("</body></html>");
-    }
+out.println("</script>");        
+out.println("<p><a href='index.html'>Back to menu</a></p>");
+        out.println("</div></div></body></html>");    }
 
     // POST → actually process the bill (unchanged from before)
    
@@ -83,10 +84,12 @@ out.println("</script>");        out.println("<p><a href='index.html'>Back to me
     String[] productIdParams = request.getParameterValues("productId");
     String[] quantityParams = request.getParameterValues("quantity");
 
-   String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
+      String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
 String user = "store_db_8wgw_user";
-String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";    try {
-        Class.forName("org.postgresql.Driver");
+String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";
+    out.println("<html><head><title>Create Bill</title>" + CSS + "</head><body>");
+    out.println("<div class='container'><div class='section'>");
+    try {Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection(url, user, password);
         conn.setAutoCommit(false);
 
@@ -127,12 +130,12 @@ String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";    try {
             validPrices.add(price);
         }
 
-        if (validQuantities.isEmpty()) {
+               if (validQuantities.isEmpty()) {
             out.println("<h2>No valid items. Bill cancelled.</h2>");
+            out.println("</div></div></body></html>");
             conn.rollback();
             return;
         }
-
         String billSql = "INSERT INTO bill (total_amount) VALUES (?) RETURNING bill_id";
         PreparedStatement billPs = conn.prepareStatement(billSql);
         billPs.setDouble(1, billTotal);
@@ -171,12 +174,13 @@ String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";    try {
         }
 
         conn.commit();
-        out.println("<h2>Bill created! Bill ID: " + billId + " | Total: " + billTotal + "</h2>");
+               out.println("<h2>Bill created! Bill ID: " + billId + " | Total: " + billTotal + "</h2>");
         out.println("<p><a href='createbill'>Create another bill</a> | <a href='index.html'>Back to menu</a></p>");
+        out.println("</div></div></body></html>");
 
         conn.close();
-    } catch (Exception e) {
+        } catch (Exception e) {
         out.println("<h2>Error creating bill: " + e.getMessage() + "</h2>");
-    }
-}
+        out.println("</div></div></body></html>");
+    }}
 }
