@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/createbill")
 public class CreateBillServlet extends HttpServlet {
+private static final String CSS =
+    "<style>* { box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: linear-gradient(135deg, #eef4ff 0%, #f7f7f8 40%); color: #1a1a1a; margin: 0; padding: 40px 20px; line-height: 1.5; } .container { max-width: 700px; margin: 0 auto; } h2,h3 { color: #111; } .section { background: #ffffff; border: 1px solid #e5e5e5; border-left: 4px solid #4f7cff; border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); } table { width: 100%; border-collapse: collapse; } th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #eee; } th { color: #555; font-size: 13px; } input[type='text'] { padding: 8px 10px; font-size: 14px; border: 1px solid #d5d5d5; border-radius: 6px; margin: 4px 0; } input[type='submit'], button { padding: 10px 16px; background-color: #4f7cff; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; } a { color: #4f7cff; text-decoration: none; font-weight: 500; border-bottom: 1px solid #cddcff; } </style>";
 
     // GET → show the product list + billing form
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
