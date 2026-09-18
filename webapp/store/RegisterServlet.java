@@ -128,13 +128,15 @@ public class RegisterServlet extends HttpServlet {
 
             response.sendRedirect("index.html");
 
-        } catch (Exception e) {
+      } catch (Exception e) {
 
-            e.printStackTrace();
+    e.printStackTrace();
 
-            response.getWriter().println(
-                "Registration failed. Please try again."
-            );
-        }
+    response.getWriter().println(
+        "<h2>Registration failed</h2>" +
+        "<p>Error: " + e.getClass().getName() + "</p>" +
+        "<p>Details: " + e.getMessage() + "</p>"
+    );
+}
     }
 }
