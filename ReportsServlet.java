@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/reports")
 public class ReportsServlet extends HttpServlet {
 
-   private static final String CSS =
+   private static final String CSS=
 "<style>" +
 "*{box-sizing:border-box}" +
 "body{margin:0;min-height:100vh;font-family:'Segoe UI',Arial,sans-serif;color:#3d2922;background:radial-gradient(circle at 5% 5%,#ffe5b8 0,transparent 24%),radial-gradient(circle at 95% 10%,#ffdcd8 0,transparent 26%),radial-gradient(circle at 80% 90%,#e9ddff 0,transparent 25%),linear-gradient(135deg,#fffaf3,#fff0e8);padding:35px 24px 60px}" +
