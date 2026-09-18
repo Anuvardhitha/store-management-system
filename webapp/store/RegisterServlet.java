@@ -77,7 +77,9 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        try (Connection con = getConnection()) {
+       Class.forName("org.postgresql.Driver");
+
+try (Connection con = getConnection()) {
                 String createTable =
                 "CREATE TABLE IF NOT EXISTS users (" +
                 "id SERIAL PRIMARY KEY, " +
