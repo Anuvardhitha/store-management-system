@@ -12,22 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/addproduct")
 public class AddProductServlet extends HttpServlet {
 private static final String CSS =
-    "<style>" +
-    "* { box-sizing: border-box; }" +
-    "body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; " +
-    "background: linear-gradient(135deg, #eef4ff 0%, #f7f7f8 40%); color: #1a1a1a; margin: 0; padding: 40px 20px; line-height: 1.5; }" +
-    ".container { max-width: 520px; margin: 0 auto; }" +
-    "h1 { font-size: 20px; font-weight: 600; margin: 0 0 16px; color: #111; }" +
-    ".section { background: #ffffff; border: 1px solid #e5e5e5; border-left: 4px solid #4f7cff; " +
-    "border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }" +
-    "input[type='text'] { width: 100%; padding: 10px 12px; font-size: 14px; border: 1px solid #d5d5d5; " +
-    "border-radius: 6px; margin-bottom: 16px; background-color: #fafafa; }" +
-    "input[type='submit'] { width: 100%; padding: 11px; background-color: #4f7cff; color: #fff; border: none; " +
-    "border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; }" +
-    "input[type='submit']:hover { background-color: #3a63e0; }" +
-    "a { color: #4f7cff; text-decoration: none; font-weight: 500; border-bottom: 1px solid #cddcff; }" +
-    "p { margin: 0; }" +
-    "</style>";
+    "<link rel='stylesheet' href='store.css'>";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
