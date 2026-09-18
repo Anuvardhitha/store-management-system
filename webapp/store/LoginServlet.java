@@ -16,15 +16,16 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private Connection getConnection() throws Exception {
+  private Connection getConnection() throws Exception {
 
-        String url = System.getenv("DB_URL");
-        String user = System.getenv("DB_USER");
-        String password = System.getenv("DB_PASSWORD");
+    Class.forName("org.postgresql.Driver");
 
-        return DriverManager.getConnection(url, user, password);
-    }
+    String url = System.getenv("DB_URL");
+    String user = System.getenv("DB_USER");
+    String password = System.getenv("DB_PASSWORD");
 
+    return DriverManager.getConnection(url, user, password);
+}
     private String hashPassword(String password) throws Exception {
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
