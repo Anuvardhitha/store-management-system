@@ -1,299 +1,557 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Store Management System</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
+            min-height: 100vh;
+
             font-family: "Segoe UI", Arial, sans-serif;
+
+            color: #39251f;
+
             background:
-                radial-gradient(circle at 10% 10%, #fff3d6 0, transparent 25%),
-                radial-gradient(circle at 90% 20%, #ffe2df 0, transparent 25%),
-                linear-gradient(135deg, #fffaf0, #fff5e8);
-            color: #3d2b25;
-            padding: 35px 20px 60px;
+                radial-gradient(circle at 5% 5%, #ffe4b8 0, transparent 22%),
+                radial-gradient(circle at 95% 15%, #ffdeda 0, transparent 24%),
+                radial-gradient(circle at 80% 90%, #e9dcff 0, transparent 25%),
+                linear-gradient(135deg, #fffaf2, #fff1e8);
+
+            padding: 35px 20px 70px;
         }
 
         .container {
-            max-width: 900px;
+            width: 92%;
+            max-width: 1100px;
             margin: auto;
         }
 
         /* HEADER */
-        .header {
+
+        header {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 35px;
         }
 
-        .brand {
+        .badge {
             display: inline-block;
-            background: #fff;
+
+            background: white;
+
             padding: 8px 18px;
+
             border-radius: 30px;
-            box-shadow: 0 5px 20px rgba(90, 50, 20, 0.08);
+
+            color: #ef6b4e;
+
             font-size: 14px;
-            font-weight: 600;
-            color: #a65d32;
-            margin-bottom: 12px;
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 25px rgba(80,45,20,.08);
         }
 
         h1 {
-            margin: 0;
-            font-size: 38px;
-            font-weight: 800;
-            color: #4a2c22;
+            font-size: clamp(38px, 5vw, 58px);
+
+            margin: 15px 0 8px;
+
+            color: #4b2e24;
+
+            letter-spacing: -2px;
         }
 
-        .highlight {
-            color: #e8754e;
+        h1 span {
+            color: #ef6b4e;
         }
 
-        .subtitle {
-            margin-top: 8px;
-            color: #7b6a63;
-            font-size: 15px;
+        header p {
+            color: #776963;
+            font-size: 16px;
         }
 
-        /* SNACK STRIP */
-        .snacks {
+        /* PRODUCT SHOWCASE */
+
+        .products {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-bottom: 28px;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 35px;
         }
 
-        .snack {
-            background: rgba(255,255,255,0.9);
-            border-radius: 18px;
-            padding: 15px 10px;
+        .product-card {
+            position: relative;
+
+            background: rgba(255,255,255,.95);
+
+            border-radius: 22px;
+
+            padding: 18px;
+
             text-align: center;
-            box-shadow: 0 7px 20px rgba(80,45,20,0.08);
-            transition: transform 0.2s ease;
+
+            box-shadow:
+                0 15px 35px rgba(80,45,20,.10);
+
+            overflow: hidden;
+
+            transition: .25s;
         }
 
-        .snack:hover {
-            transform: translateY(-4px);
+        .product-card:hover {
+            transform: translateY(-7px) rotate(-1deg);
+
+            box-shadow:
+                0 22px 45px rgba(80,45,20,.16);
         }
 
-        .snack-icon {
-            font-size: 30px;
-            display: block;
-            margin-bottom: 5px;
+        .product-image {
+            height: 130px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 10px;
         }
 
-        .snack-name {
+        .product-card h3 {
+            margin: 8px 0 3px;
+
+            color: #4b2e24;
+        }
+
+        .product-card p {
+            margin: 0;
+
+            color: #8a7770;
+
             font-size: 13px;
-            font-weight: 700;
-            color: #5b4035;
         }
 
-        .silk {
-            border-top: 4px solid #7b3f2c;
+        /* CHOCOLATE */
+
+        .chocolate {
+            width: 125px;
+            height: 75px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(145deg,#8b4b2d,#522719);
+
+            transform: rotate(-7deg);
+
+            box-shadow:
+                8px 12px 0 #3e1c12,
+                0 12px 25px rgba(60,25,10,.25);
+
+            position: relative;
         }
 
-        .bingo {
-            border-top: 4px solid #e8a32d;
+        .chocolate::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 31%,
+                    rgba(255,255,255,.15) 32%,
+                    transparent 33%,
+                    transparent 65%,
+                    rgba(255,255,255,.15) 66%,
+                    transparent 67%
+                );
+
+            border-radius: 5px;
+        }
+
+        .chocolate::after {
+            content: "SILK";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            top: 27px;
+
+            color: #ffe5b5;
+
+            font-size: 19px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        /* BINGO / CHIPS */
+
+        .chips {
+            width: 90px;
+            height: 112px;
+
+            background:
+                linear-gradient(
+                    160deg,
+                    #f8a91b,
+                    #e94b2c
+                );
+
+            border-radius: 14px 14px 22px 22px;
+
+            transform: rotate(5deg);
+
+            box-shadow:
+                0 13px 25px rgba(190,70,20,.22);
+
+            position: relative;
+
+            clip-path:
+                polygon(
+                    8% 0,
+                    92% 0,
+                    100% 100%,
+                    0 100%
+                );
+        }
+
+        .chips::before {
+            content: "BINGO";
+
+            position: absolute;
+
+            left: 8px;
+            right: 8px;
+            top: 30px;
+
+            padding: 7px 2px;
+
+            background: white;
+
+            color: #e33e26;
+
+            font-size: 14px;
+            font-weight: 900;
+
+            border-radius: 5px;
+        }
+
+        .chips::after {
+            content: "🥔";
+
+            position: absolute;
+
+            bottom: 13px;
+            left: 0;
+            right: 0;
+
+            font-size: 23px;
+        }
+
+        /* COOKIES */
+
+        .cookies {
+            position: relative;
+
+            width: 125px;
+            height: 100px;
         }
 
         .cookie {
-            border-top: 4px solid #c98245;
+            position: absolute;
+
+            width: 67px;
+            height: 67px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 30%,
+                    #e9bd78,
+                    #c57b38
+                );
+
+            box-shadow:
+                inset -7px -8px 0 rgba(90,45,15,.12),
+                0 10px 20px rgba(80,45,20,.15);
         }
+
+        .cookie::after {
+            content: "";
+
+            position: absolute;
+
+            width: 10px;
+            height: 10px;
+
+            background: #70401e;
+
+            border-radius: 50%;
+
+            top: 18px;
+            left: 18px;
+
+            box-shadow:
+                27px 5px #70401e,
+                12px 30px #70401e,
+                39px 34px #70401e;
+        }
+
+        .cookie.one {
+            left: 5px;
+            top: 20px;
+        }
+
+        .cookie.two {
+            right: 5px;
+            top: 3px;
+
+            transform: scale(.8);
+        }
+
+        /* DRINK */
 
         .drink {
-            border-top: 4px solid #55a7a0;
-        }
+            width: 60px;
+            height: 112px;
 
-        /* MAIN GRID */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+            border-radius: 14px 14px 20px 20px;
 
-        .section {
-            background: rgba(255,255,255,0.96);
-            border-radius: 22px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(85, 50, 30, 0.09);
-            border: 1px solid rgba(120,80,50,0.08);
+            background:
+                linear-gradient(
+                    90deg,
+                    #d94b39,
+                    #f17955,
+                    #c8392f
+                );
+
+            box-shadow:
+                0 12px 25px rgba(190,50,30,.22);
+
             position: relative;
-            overflow: hidden;
+
+            transform: rotate(-4deg);
         }
 
-        .section::before {
+        .drink::before {
             content: "";
+
             position: absolute;
-            top: 0;
+
+            width: 38px;
+            height: 9px;
+
+            background: #d7d7d7;
+
+            border-radius: 50%;
+
+            top: -5px;
+            left: 11px;
+        }
+
+        .drink::after {
+            content: "DRINK";
+
+            position: absolute;
+
+            top: 45px;
             left: 0;
+            right: 0;
+
+            color: white;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            transform: rotate(90deg);
+        }
+
+        /* DASHBOARD GRID */
+
+        .dashboard {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 22px;
+        }
+
+        .card {
+            background: rgba(255,255,255,.95);
+
+            border-radius: 25px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 18px 50px rgba(80,45,20,.10);
+
+            border-top: 5px solid #ef6b4e;
+
+            transition: .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card:nth-child(2) {
+            border-color: #63b8a7;
+        }
+
+        .card:nth-child(3) {
+            border-color: #f4b740;
+        }
+
+        .card:nth-child(4) {
+            border-color: #9b72d8;
+        }
+
+        .card-icon {
+            font-size: 38px;
+            margin-bottom: 5px;
+        }
+
+        .card h2 {
+            color: #4b2e24;
+
+            margin: 5px 0 8px;
+
+            font-size: 24px;
+        }
+
+        .card p {
+            color: #776963;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+        input {
             width: 100%;
-            height: 5px;
-        }
 
-        .add-card::before {
-            background: #e8754e;
-        }
+            padding: 13px 15px;
 
-        .bill-card::before {
-            background: #62b49e;
-        }
+            border: 1.5px solid #e1d5ce;
 
-        .restock-card::before {
-            background: #e9a63a;
-        }
+            border-radius: 12px;
 
-        .links-card::before {
-            background: #9c72d8;
-        }
-
-        .section h2 {
-            margin: 0 0 20px;
-            font-size: 21px;
-            color: #452f28;
-        }
-
-        .section-description {
-            color: #88756c;
-            font-size: 13px;
-            margin-top: -12px;
-            margin-bottom: 18px;
-        }
-
-        /* FORMS */
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #67534b;
-            margin-bottom: 6px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px 14px;
             margin-bottom: 15px;
-            border: 1px solid #e1d5ce;
-            border-radius: 11px;
-            background: #fffaf7;
-            font-size: 14px;
-            color: #3d2b25;
-            transition: 0.2s;
+
+            font-size: 15px;
+
+            outline: none;
         }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #e8754e;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(232,117,78,0.12);
+        input:focus {
+            border-color: #ef6b4e;
+
+            box-shadow:
+                0 0 0 4px rgba(239,107,78,.10);
         }
 
         input[type="submit"] {
-            width: 100%;
-            padding: 13px;
             border: none;
-            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef6b4e,
+                    #f58a68
+                );
+
             color: white;
-            font-size: 14px;
-            font-weight: 700;
+
+            font-weight: 800;
+
             cursor: pointer;
-            transition: 0.2s;
-        }
 
-        .add-card input[type="submit"] {
-            background: linear-gradient(135deg, #e8754e, #d85d3c);
-        }
-
-        .restock-card input[type="submit"] {
-            background: linear-gradient(135deg, #e8a32d, #d98b16);
+            transition: .2s;
         }
 
         input[type="submit"]:hover {
             transform: translateY(-2px);
-            box-shadow: 0 7px 18px rgba(80,50,30,0.15);
+
+            box-shadow:
+                0 10px 22px rgba(239,107,78,.25);
         }
 
-        /* BILLING */
-        .big-icon {
-            font-size: 42px;
-            margin-bottom: 8px;
-        }
-
-        .action-link {
+        .big-link {
             display: block;
+
             text-align: center;
-            background: #e9f8f3;
-            color: #27856f;
-            border-radius: 12px;
-            padding: 13px;
-            text-decoration: none;
-            font-weight: 700;
-            border: none;
-            transition: 0.2s;
+
+            padding: 15px;
+
+            border-radius: 13px;
+
+            background: #fff0e9;
+
+            color: #d95d42;
+
+            font-weight: 800;
+
+            transition: .2s;
         }
 
-        .action-link:hover {
-            background: #d5f0e7;
-            transform: translateY(-2px);
+        .big-link:hover {
+            background: #ef6b4e;
+            color: white;
         }
 
-        /* LINKS */
-        .dashboard-link {
-            display: block;
-            text-decoration: none;
-            color: #59436e;
-            background: #f4edfb;
-            padding: 13px 15px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .dashboard-link:hover {
-            background: #e9dcf6;
-            transform: translateX(3px);
-        }
-
-        /* FOOTER */
-        .footer {
+        footer {
             text-align: center;
-            margin-top: 30px;
-            color: #927f75;
+
+            margin-top: 35px;
+
+            color: #96857e;
+
             font-size: 13px;
         }
 
-        .footer span {
-            color: #e8754e;
-            font-weight: 700;
+        @media(max-width: 800px) {
+
+            .products {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* MOBILE */
-        @media (max-width: 700px) {
+        @media(max-width: 500px) {
 
-            body {
-                padding: 25px 14px 40px;
-            }
-
-            h1 {
-                font-size: 30px;
-            }
-
-            .snacks {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .grid {
+            .products {
                 grid-template-columns: 1fr;
             }
 
-            .section {
-                padding: 21px;
+            body {
+                padding: 20px 10px;
             }
         }
+
     </style>
 </head>
 
@@ -301,95 +559,150 @@
 
 <div class="container">
 
-    <!-- HEADER -->
-    <div class="header">
+    <header>
 
-        <div class="brand">
-            🛒 StoreApp
+        <div class="badge">
+            ✦ StoreApp
         </div>
 
         <h1>
-            Store <span class="highlight">Management</span> System
+            Store Management
+            <span>System</span>
         </h1>
 
-        <p class="subtitle">
-            Manage products • Handle billing • Track stock • Generate reports
+        <p>
+            Everything your store needs — products, billing, stock and reports.
         </p>
 
+    </header>
+
+
+    <!-- PRODUCT SHOWCASE -->
+
+    <div class="products">
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <div class="chocolate"></div>
+
+            </div>
+
+            <h3>Silk Chocolate</h3>
+
+            <p>Sweet treats & premium chocolates</p>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <div class="chips"></div>
+
+            </div>
+
+            <h3>Bingo</h3>
+
+            <p>Crispy snacks for every break</p>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <div class="cookies">
+
+                    <div class="cookie one"></div>
+                    <div class="cookie two"></div>
+
+                </div>
+
+            </div>
+
+            <h3>Cookies</h3>
+
+            <p>Fresh and crunchy favourites</p>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <div class="drink"></div>
+
+            </div>
+
+            <h3>Drinks</h3>
+
+            <p>Cool beverages for customers</p>
+
+        </div>
+
     </div>
 
 
-    <!-- SNACKS -->
-    <div class="snacks">
+    <!-- DASHBOARD -->
 
-        <div class="snack silk">
-            <span class="snack-icon">🍫</span>
-            <span class="snack-name">Silk Chocolate</span>
-        </div>
+    <div class="dashboard">
 
-        <div class="snack bingo">
-            <span class="snack-icon">🥔</span>
-            <span class="snack-name">Bingo</span>
-        </div>
-
-        <div class="snack cookie">
-            <span class="snack-icon">🍪</span>
-            <span class="snack-name">Cookies</span>
-        </div>
-
-        <div class="snack drink">
-            <span class="snack-icon">🥤</span>
-            <span class="snack-name">Drinks</span>
-        </div>
-
-    </div>
-
-
-    <!-- MAIN CONTENT -->
-    <div class="grid">
 
         <!-- ADD PRODUCT -->
-        <div class="section add-card">
 
-            <h2>🍫 Add Product</h2>
+        <div class="card">
 
-            <p class="section-description">
-                Add a new item to your store inventory.
+            <div class="card-icon">＋</div>
+
+            <h2>Add Product</h2>
+
+            <p>
+                Add a new product to your store inventory.
             </p>
 
             <form action="addproduct" method="post">
 
                 <label>Name</label>
-                <input type="text" name="name">
+                <input type="text" name="name" required>
 
                 <label>Price</label>
-                <input type="text" name="price">
+                <input type="text" name="price" required>
 
                 <label>Quantity</label>
-                <input type="text" name="quantity">
+                <input type="text" name="quantity" required>
 
-                <label>Min Stock Level</label>
-                <input type="text" name="minStock">
+                <label>Minimum Stock Level</label>
+                <input type="text" name="minStock" required>
 
-                <input type="submit" value="Add Product">
+                <input
+                    type="submit"
+                    value="Add Product">
 
             </form>
 
         </div>
 
 
-        <!-- BILLING -->
-        <div class="section bill-card">
+        <!-- BILL -->
 
-            <div class="big-icon">🧾</div>
+        <div class="card">
+
+            <div class="card-icon">▣</div>
 
             <h2>Create Bill</h2>
 
-            <p class="section-description">
-                Create bills and manage customer purchases.
+            <p>
+                Create customer bills and automatically update inventory.
             </p>
 
-            <a href="createbill" class="action-link">
+            <a
+                class="big-link"
+                href="createbill">
                 Go to Billing →
             </a>
 
@@ -397,44 +710,58 @@
 
 
         <!-- RESTOCK -->
-        <div class="section restock-card">
 
-            <h2>📦 Restock Product</h2>
+        <div class="card">
 
-            <p class="section-description">
-                Increase the stock of an existing product.
+            <div class="card-icon">↻</div>
+
+            <h2>Restock Product</h2>
+
+            <p>
+                Increase the quantity of an existing product.
             </p>
 
             <form action="restock" method="post">
 
                 <label>Product ID</label>
-                <input type="text" name="productId">
+                <input type="text" name="productId" required>
 
                 <label>Quantity Received</label>
-                <input type="text" name="quantity">
+                <input type="text" name="quantity" required>
 
-                <input type="submit" value="Restock Product">
+                <input
+                    type="submit"
+                    value="Restock Product">
 
             </form>
 
         </div>
 
 
-        <!-- LINKS -->
-        <div class="section links-card">
+        <!-- REPORTS -->
 
-            <h2>📊 Store Overview</h2>
+        <div class="card">
 
-            <p class="section-description">
-                Check your products and store performance.
+            <div class="card-icon">▥</div>
+
+            <h2>Store Overview</h2>
+
+            <p>
+                View your products, sales performance and business reports.
             </p>
 
-            <a href="viewproducts" class="dashboard-link">
-                📦 View All Products
+            <a
+                class="big-link"
+                href="viewproducts">
+                View All Products →
             </a>
 
-            <a href="reports" class="dashboard-link">
-                📈 View Reports
+            <br>
+
+            <a
+                class="big-link"
+                href="reports">
+                View Reports →
             </a>
 
         </div>
@@ -442,9 +769,9 @@
     </div>
 
 
-    <div class="footer">
-        🍪 Good Products • <span>Brighter Days</span> • 🥤 Happy Shopping
-    </div>
+    <footer>
+        Good Products • Smart Billing • Better Stock Management
+    </footer>
 
 </div>
 
