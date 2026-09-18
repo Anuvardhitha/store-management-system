@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Restock</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:'Segoe UI',Arial,sans-serif;color:#4b2e24;background:linear-gradient(135deg,#fffaf4,#e8f7ee,#fff0e8);padding:35px 20px}
+.container{max-width:600px;margin:auto}.card{background:rgba(255,255,255,.9);border-radius:26px;padding:30px;box-shadow:0 18px 45px rgba(60,100,70,.1);border-top:6px solid #4aa976}
+h1{margin:0 0 6px;font-size:32px;color:#40251d}p{color:#6e8578}.field{margin-top:18px}label{display:block;font-weight:700;margin-bottom:7px}input{width:100%;padding:13px;border:1px solid #d5e6dc;border-radius:12px;font-size:15px;background:#fbfffc}input:focus{outline:none;border-color:#4aa976;box-shadow:0 0 0 3px rgba(74,169,118,.12)}button{width:100%;margin-top:22px;padding:14px;border:0;border-radius:13px;background:linear-gradient(135deg,#4aa976,#65bd8c);color:#fff;font-weight:800;font-size:15px;cursor:pointer}.back{display:block;text-align:center;margin-top:18px;color:#397a59;text-decoration:none;font-weight:700}
+</style></head><body><div class="container"><div class="card"><h1>📦 Restock Product</h1><p>Increase the available quantity of an existing product.</p>
+<form action="restock" method="post">
+<div class="field"><label>Product ID</label><input name="productId" type="number" min="1" required></div>
+<div class="field"><label>Quantity Received</label><input name="quantity" type="number" min="1" required></div>
+<button type="submit">Restock Inventory</button></form><a class="back" href="dashboard.html">← Back to Dashboard</a></div></div></body></html>
