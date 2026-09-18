@@ -1,172 +1,452 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Store App</title>
+    <title>Store Management System</title>
+
     <style>
         * {
             box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #eef4ff 0%, #f7f7f8 40%);
-            color: #1a1a1a;
             margin: 0;
-            padding: 40px 20px;
-            line-height: 1.5;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, #fff3d6 0, transparent 25%),
+                radial-gradient(circle at 90% 20%, #ffe2df 0, transparent 25%),
+                linear-gradient(135deg, #fffaf0, #fff5e8);
+            color: #3d2b25;
+            padding: 35px 20px 60px;
         }
 
         .container {
-            max-width: 520px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .brand {
+            display: inline-block;
+            background: #fff;
+            padding: 8px 18px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(90, 50, 20, 0.08);
+            font-size: 14px;
+            font-weight: 600;
+            color: #a65d32;
+            margin-bottom: 12px;
         }
 
         h1 {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0 0 16px;
-            color: #111;
+            margin: 0;
+            font-size: 38px;
+            font-weight: 800;
+            color: #4a2c22;
+        }
+
+        .highlight {
+            color: #e8754e;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            color: #7b6a63;
+            font-size: 15px;
+        }
+
+        /* SNACK STRIP */
+        .snacks {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .snack {
+            background: rgba(255,255,255,0.9);
+            border-radius: 18px;
+            padding: 15px 10px;
+            text-align: center;
+            box-shadow: 0 7px 20px rgba(80,45,20,0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .snack:hover {
+            transform: translateY(-4px);
+        }
+
+        .snack-icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .snack-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #5b4035;
+        }
+
+        .silk {
+            border-top: 4px solid #7b3f2c;
+        }
+
+        .bingo {
+            border-top: 4px solid #e8a32d;
+        }
+
+        .cookie {
+            border-top: 4px solid #c98245;
+        }
+
+        .drink {
+            border-top: 4px solid #55a7a0;
+        }
+
+        /* MAIN GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         .section {
-            background: #ffffff;
-            border: 1px solid #e5e5e5;
-            border-left: 4px solid #4f7cff;
-            border-radius: 10px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            background: rgba(255,255,255,0.96);
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(85, 50, 30, 0.09);
+            border: 1px solid rgba(120,80,50,0.08);
+            position: relative;
+            overflow: hidden;
         }
 
-        .section:nth-of-type(2) {
-            border-left-color: #22b573;
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
         }
 
-        .section:nth-of-type(3) {
-            border-left-color: #f5a623;
+        .add-card::before {
+            background: #e8754e;
         }
 
-        .section:nth-of-type(4) {
-            border-left-color: #a259ff;
+        .bill-card::before {
+            background: #62b49e;
         }
 
-        label,
-        .field-label {
+        .restock-card::before {
+            background: #e9a63a;
+        }
+
+        .links-card::before {
+            background: #9c72d8;
+        }
+
+        .section h2 {
+            margin: 0 0 20px;
+            font-size: 21px;
+            color: #452f28;
+        }
+
+        .section-description {
+            color: #88756c;
+            font-size: 13px;
+            margin-top: -12px;
+            margin-bottom: 18px;
+        }
+
+        /* FORMS */
+        label {
             display: block;
             font-size: 13px;
-            font-weight: 500;
-            color: #555;
+            font-weight: 600;
+            color: #67534b;
             margin-bottom: 6px;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 10px 12px;
+            padding: 12px 14px;
+            margin-bottom: 15px;
+            border: 1px solid #e1d5ce;
+            border-radius: 11px;
+            background: #fffaf7;
             font-size: 14px;
-            border: 1px solid #d5d5d5;
-            border-radius: 6px;
-            margin-bottom: 16px;
-            background-color: #fafafa;
+            color: #3d2b25;
+            transition: 0.2s;
         }
 
         input[type="text"]:focus {
             outline: none;
-            border-color: #4f7cff;
-            background-color: #fff;
-            box-shadow: 0 0 0 3px rgba(79,124,255,0.12);
+            border-color: #e8754e;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(232,117,78,0.12);
         }
 
         input[type="submit"] {
             width: 100%;
-            padding: 11px;
-            background-color: #4f7cff;
-            color: #fff;
+            padding: 13px;
             border: none;
-            border-radius: 6px;
+            border-radius: 12px;
+            color: white;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.15s ease;
+            transition: 0.2s;
+        }
+
+        .add-card input[type="submit"] {
+            background: linear-gradient(135deg, #e8754e, #d85d3c);
+        }
+
+        .restock-card input[type="submit"] {
+            background: linear-gradient(135deg, #e8a32d, #d98b16);
         }
 
         input[type="submit"]:hover {
-            background-color: #3a63e0;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(80,50,30,0.15);
         }
 
-        .section:nth-of-type(3) input[type="submit"] {
-            background-color: #f5a623;
+        /* BILLING */
+        .big-icon {
+            font-size: 42px;
+            margin-bottom: 8px;
         }
 
-        .section:nth-of-type(3) input[type="submit"]:hover {
-            background-color: #d98e0f;
-        }
-
-        a {
-            color: #4f7cff;
+        .action-link {
+            display: block;
+            text-align: center;
+            background: #e9f8f3;
+            color: #27856f;
+            border-radius: 12px;
+            padding: 13px;
             text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid #cddcff;
+            font-weight: 700;
+            border: none;
+            transition: 0.2s;
         }
 
-        a:hover {
-            border-bottom-color: #4f7cff;
+        .action-link:hover {
+            background: #d5f0e7;
+            transform: translateY(-2px);
         }
 
-        p {
-            margin: 0;
+        /* LINKS */
+        .dashboard-link {
+            display: block;
+            text-decoration: none;
+            color: #59436e;
+            background: #f4edfb;
+            padding: 13px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
-        .links-section p + p {
-            margin-top: 10px;
+        .dashboard-link:hover {
+            background: #e9dcf6;
+            transform: translateX(3px);
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #927f75;
+            font-size: 13px;
+        }
+
+        .footer span {
+            color: #e8754e;
+            font-weight: 700;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            body {
+                padding: 25px 14px 40px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .snacks {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 21px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
 
-        <div class="section">
-            <h1>Add Product</h1>
-            <form action="addproduct" method="post">
-                <span class="field-label">Name</span>
-                <input type="text" name="name">
+<div class="container">
 
-                <span class="field-label">Price</span>
-                <input type="text" name="price">
+    <!-- HEADER -->
+    <div class="header">
 
-                <span class="field-label">Quantity</span>
-                <input type="text" name="quantity">
-
-                <span class="field-label">Min Stock Level</span>
-                <input type="text" name="minStock">
-
-                <input type="submit" value="Add Product">
-            </form>
+        <div class="brand">
+            🛒 StoreApp
         </div>
 
-        <div class="section">
-            <h1>Create Bill</h1>
-            <p><a href="createbill">Go to Billing</a></p>
+        <h1>
+            Store <span class="highlight">Management</span> System
+        </h1>
+
+        <p class="subtitle">
+            Manage products • Handle billing • Track stock • Generate reports
+        </p>
+
+    </div>
+
+
+    <!-- SNACKS -->
+    <div class="snacks">
+
+        <div class="snack silk">
+            <span class="snack-icon">🍫</span>
+            <span class="snack-name">Silk Chocolate</span>
         </div>
 
-        <div class="section">
-            <h1>Restock Product</h1>
-            <form action="restock" method="post">
-                <span class="field-label">Product ID</span>
-                <input type="text" name="productId">
-
-                <span class="field-label">Quantity Received</span>
-                <input type="text" name="quantity">
-
-                <input type="submit" value="Restock">
-            </form>
+        <div class="snack bingo">
+            <span class="snack-icon">🥔</span>
+            <span class="snack-name">Bingo</span>
         </div>
 
-        <div class="section links-section">
-            <h1>Links</h1>
-            <p><a href="viewproducts">View All Products</a></p>
-            <p><a href="reports">View Reports</a></p>
+        <div class="snack cookie">
+            <span class="snack-icon">🍪</span>
+            <span class="snack-name">Cookies</span>
+        </div>
+
+        <div class="snack drink">
+            <span class="snack-icon">🥤</span>
+            <span class="snack-name">Drinks</span>
         </div>
 
     </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="grid">
+
+        <!-- ADD PRODUCT -->
+        <div class="section add-card">
+
+            <h2>🍫 Add Product</h2>
+
+            <p class="section-description">
+                Add a new item to your store inventory.
+            </p>
+
+            <form action="addproduct" method="post">
+
+                <label>Name</label>
+                <input type="text" name="name">
+
+                <label>Price</label>
+                <input type="text" name="price">
+
+                <label>Quantity</label>
+                <input type="text" name="quantity">
+
+                <label>Min Stock Level</label>
+                <input type="text" name="minStock">
+
+                <input type="submit" value="Add Product">
+
+            </form>
+
+        </div>
+
+
+        <!-- BILLING -->
+        <div class="section bill-card">
+
+            <div class="big-icon">🧾</div>
+
+            <h2>Create Bill</h2>
+
+            <p class="section-description">
+                Create bills and manage customer purchases.
+            </p>
+
+            <a href="createbill" class="action-link">
+                Go to Billing →
+            </a>
+
+        </div>
+
+
+        <!-- RESTOCK -->
+        <div class="section restock-card">
+
+            <h2>📦 Restock Product</h2>
+
+            <p class="section-description">
+                Increase the stock of an existing product.
+            </p>
+
+            <form action="restock" method="post">
+
+                <label>Product ID</label>
+                <input type="text" name="productId">
+
+                <label>Quantity Received</label>
+                <input type="text" name="quantity">
+
+                <input type="submit" value="Restock Product">
+
+            </form>
+
+        </div>
+
+
+        <!-- LINKS -->
+        <div class="section links-card">
+
+            <h2>📊 Store Overview</h2>
+
+            <p class="section-description">
+                Check your products and store performance.
+            </p>
+
+            <a href="viewproducts" class="dashboard-link">
+                📦 View All Products
+            </a>
+
+            <a href="reports" class="dashboard-link">
+                📈 View Reports
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        🍪 Good Products • <span>Brighter Days</span> • 🥤 Happy Shopping
+    </div>
+
+</div>
+
 </body>
 </html>
