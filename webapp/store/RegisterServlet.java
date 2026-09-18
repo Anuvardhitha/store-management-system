@@ -126,7 +126,7 @@ public class RegisterServlet extends HttpServlet {
                 insert.executeUpdate();
             }
 
-            response.sendRedirect("login.html");
+            response.sendRedirect("index.html");
 
         } catch (Exception e) {
 
