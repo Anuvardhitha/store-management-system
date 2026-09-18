@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/viewproducts")
+    public class ViewProductsServlet extends HttpServlet {
 private static final String CSS =
     "<link rel='stylesheet' href='store.css'>";
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
