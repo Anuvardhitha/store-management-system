@@ -85,7 +85,7 @@ public class LoginServlet extends HttpServlet {
                             session.setAttribute("userEmail", email);
                             session.setAttribute("userId", rs.getInt("id"));
 
-                            response.sendRedirect("index.html");
+                            response.sendRedirect("dashboard.html");
 
                         } else {
 
