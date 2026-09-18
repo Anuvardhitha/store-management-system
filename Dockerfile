@@ -1,16 +1,22 @@
 FROM tomcat:9.0-jdk8
 
-# Remove default Tomcat apps to keep the image clean
+# Remove default Tomcat apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your app (HTML, WEB-INF/lib, etc.) into Tomcat's webapps folder
+# Copy web application
 COPY webapp/store /usr/local/tomcat/webapps/ROOT
 
-# Copy the Java source files into a temporary build folder
+# Copy all servlet source files
 COPY *.java /usr/src/servlets/
 
-# Compile them against Tomcat's own servlet-api.jar, writing straight into WEB-INF/classes
-RUN javac -cp /usr/local/tomcat/lib/servlet-api.jar -d /usr/local/tomcat/webapps/ROOT/WEB-INF/classes /usr/src/servlets/*.java
+# Copy the new authentication servlets
+COPY webapp/store/RegisterServlet.java /usr/src/servlets/
+COPY webapp/store/LoginServlet.java /usr/src/servlets/
+
+# Compile all servlets
+RUN javac -cp /usr/local/tomcat/lib/servlet-api.jar \
+    -d /usr/local/tomcat/webapps/ROOT/WEB-INF/classes \
+    /usr/src/servlets/*.java
 
 EXPOSE 8080
 
