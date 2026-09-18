@@ -78,7 +78,19 @@ public class RegisterServlet extends HttpServlet {
         }
 
         try (Connection con = getConnection()) {
+                String createTable =
+                "CREATE TABLE IF NOT EXISTS users (" +
+                "id SERIAL PRIMARY KEY, " +
+                "email VARCHAR(255) UNIQUE NOT NULL, " +
+                "password_hash VARCHAR(255) NOT NULL, " +
+                "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ")";
 
+            try (PreparedStatement tableStmt =
+                    con.prepareStatement(createTable)) {
+
+                tableStmt.executeUpdate();
+            }
             // Check whether account already exists
             String checkSql =
                 "SELECT id FROM users WHERE email = ?";
