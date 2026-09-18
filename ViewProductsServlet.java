@@ -51,9 +51,11 @@ out.println("<div class='container'><div class='section'>");
             rs.close();
             stmt.close();
             conn.close();
-        } catch (Exception e) {
+                } catch (Exception e) {
             out.println("<h3 style='color:red;'>Error details: " + e.getMessage() + "</h3>");
             e.printStackTrace();
         }
-        out.println("</div></div></body></html>");    }
+
+        out.println("</div></div></body></html>");
+    }
 }
