@@ -26,7 +26,7 @@ private static final String CSS =
         String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
 String user = "store_db_8wgw_user";
 String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         try {
