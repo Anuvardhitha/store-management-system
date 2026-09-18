@@ -15,14 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
-    private Connection getConnection() throws Exception {
+   private Connection getConnection() throws Exception {
 
-        String url = System.getenv("DB_URL");
-        String user = System.getenv("DB_USER");
-        String password = System.getenv("DB_PASSWORD");
+    Class.forName("org.postgresql.Driver");
 
-        return DriverManager.getConnection(url, user, password);
-    }
+    String url = System.getenv("DB_URL");
+    String user = System.getenv("DB_USER");
+    String password = System.getenv("DB_PASSWORD");
+
+    return DriverManager.getConnection(url, user, password);
+}
 
     private String hashPassword(String password) throws Exception {
 
@@ -77,7 +79,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-       Class.forName("org.postgresql.Driver");
+    
 
 try (Connection con = getConnection()) {
                 String createTable =
