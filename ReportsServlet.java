@@ -17,7 +17,7 @@ private static final String CSS =
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("text/html");
+       response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
