@@ -47,7 +47,7 @@ out.println("<div class='container'><div class='section'>");
                 out.println("</tr>");
             }
             out.println("</table>");
-            out.println("<br><p><a href='index.html'>Add Another Product</a></p>");
+            out.println("<br><p><a href='dashboard.html'>Add Another Product</a></p>");
 
             rs.close();
             stmt.close();
