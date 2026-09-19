@@ -62,7 +62,7 @@ try {
             conn.commit();
 
                         out.println("<h2>Restocked " + qty + " units of " + productName + "!</h2>");
-            out.println("<p><a href='index.html'>Back to menu</a></p>");
+            out.println("<p><a href='dashboard.html'>Back to menu</a></p>");
             out.println("</div></div></body></html>");
 
             conn.close();
