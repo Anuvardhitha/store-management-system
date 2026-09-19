@@ -21,9 +21,9 @@ private static final String CSS =
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-       String url = "jdbc:postgresql://dpg-da3cm36k1f9s73ejv0j0-a.ohio-postgres.render.com:5432/store_db_8wgw";
-String user = "store_db_8wgw_user";
-String password = "xybXiHQe8UpL4DEEpNXjHd8ujdDvEMjJ";        
+     String url = System.getenv("DB_URL");
+String user = System.getenv("DB_USER");
+String password = System.getenv("DB_PASSWORD");   
 out.println("<html><head><title>Create Bill</title>" + CSS + "</head><body>");
 out.println("<div class='container'><div class='section'>");
         out.println("<h2>Available Products</h2>");
