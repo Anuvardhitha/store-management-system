@@ -70,7 +70,7 @@ out.println("  var row = table.insertRow(-1);");
 out.println("  row.innerHTML = \"<td><input type='text' name='productId'></td><td><input type='text' name='quantity'></td></tr>\";");
 out.println("}");
 out.println("</script>");        
-out.println("<p><a href='index.html'>Back to menu</a></p>");
+out.println("<p><a href='dashboard.html'>Back to menu</a></p>");
         out.println("</div></div></body></html>");    }
 
     // POST → actually process the bill (unchanged from before)
@@ -176,7 +176,7 @@ String password = System.getenv("DB_PASSWORD");
 
         conn.commit();
                out.println("<h2>Bill created! Bill ID: " + billId + " | Total: " + billTotal + "</h2>");
-        out.println("<p><a href='createbill'>Create another bill</a> | <a href='index.html'>Back to menu</a></p>");
+        out.println("<p><a href='createbill'>Create another bill</a> | <a href='dashboard.html'>Back to menu</a></p>");
         out.println("</div></div></body></html>");
 
         conn.close();
