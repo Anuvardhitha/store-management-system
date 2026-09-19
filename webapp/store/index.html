@@ -3,445 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Login | Store Management System</title>
+    <title>Store Management System</title>
 
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: "Segoe UI", Arial, sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, #fff8ef, #fff1ec, #f3f8ff);
-            color: #39251f;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #fff7ed, #fce7f3, #fef3c7);
+            color: #3b2418;
             overflow-x: hidden;
         }
 
-        .bubble {
+        /* Decorative shapes */
+        .circle {
             position: fixed;
             border-radius: 50%;
-            z-index: -1;
-            opacity: .55;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .one {
-            width: 190px;
-            height: 190px;
-            background: #ffe4b8;
-            top: -60px;
-            left: -50px;
+        .circle.one {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 183, 77, 0.18);
+            top: -100px;
+            left: -90px;
         }
 
-        .two {
-            width: 150px;
-            height: 150px;
-            background: #dff0d8;
-            top: 70px;
-            left: 40%;
+        .circle.two {
+            width: 380px;
+            height: 380px;
+            background: rgba(236, 72, 153, 0.12);
+            bottom: -170px;
+            right: -120px;
         }
 
-        .three {
-            width: 180px;
-            height: 180px;
-            background: #eadcff;
-            bottom: -70px;
-            right: -40px;
+        /* Main container */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .container {
-            width: 92%;
-            max-width: 1350px;
-            min-height: 100vh;
-            margin: auto;
+            width: 100%;
+            max-width: 1050px;
+            min-height: 620px;
             display: grid;
-            grid-template-columns: 1.05fr .95fr;
-            align-items: center;
-            gap: 50px;
-            padding: 40px 0;
+            grid-template-columns: 1.15fr 0.85fr;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 32px;
+            box-shadow: 0 25px 70px rgba(80, 45, 25, 0.15);
+            overflow: hidden;
         }
 
-        /* LEFT */
-
-        .left {
-            padding: 20px;
+        /* Left section */
+        .welcome {
+            padding: 65px 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
         }
 
         .brand {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 45px;
-        }
-
-        .brand span {
-            color: #ef6b4e;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #7c3f20;
+            margin-bottom: 30px;
         }
 
         .brand-icon {
-            color: #ef6b4e;
-            font-size: 32px;
-            margin-right: 8px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: #7c3f20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 8px 20px rgba(124, 63, 32, 0.25);
         }
 
-        .heading {
-            font-size: clamp(48px, 5vw, 76px);
-            line-height: .98;
-            font-weight: 850;
-            letter-spacing: -3px;
-            margin-bottom: 25px;
+        h1 {
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.03;
+            margin-bottom: 22px;
+            color: #42210f;
         }
 
-        .orange {
-            color: #ef654c;
+        h1 span {
+            color: #c15b35;
         }
 
-        .description {
+        .subtitle {
             font-size: 18px;
-            color: #665b57;
             line-height: 1.7;
-            max-width: 650px;
+            max-width: 540px;
+            color: #76594a;
+            margin-bottom: 35px;
         }
 
         .features {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 25px;
         }
 
         .feature {
             padding: 10px 16px;
             border-radius: 30px;
-            background: rgba(255,255,255,.75);
-            border: 1px solid #eadfd7;
+            background: #fff8f0;
+            border: 1px solid #f3d9c6;
+            color: #6b3c25;
             font-size: 14px;
             font-weight: 600;
-            box-shadow: 0 5px 15px rgba(70,40,20,.05);
         }
 
-        /* STORE SCENE */
-
-        .store-scene {
-            margin-top: 45px;
-            position: relative;
-            height: 250px;
-            background: linear-gradient(to bottom,#f9e9d8,#e9c59d);
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(80,45,20,.12);
+        /* Store illustration */
+        .store-art {
+            position: absolute;
+            right: 35px;
+            bottom: 30px;
+            width: 160px;
+            height: 145px;
+            opacity: 0.95;
         }
 
         .shelf {
             position: absolute;
-            width: 80%;
-            height: 100px;
-            left: 10%;
-            top: 45px;
-            background: #b97945;
+            bottom: 12px;
+            width: 160px;
+            height: 12px;
+            background: #7c3f20;
             border-radius: 8px;
-            box-shadow: 0 10px 0 #8d552f;
         }
 
-        .product {
+        .box {
             position: absolute;
-            bottom: 10px;
+            bottom: 24px;
             width: 42px;
+            height: 55px;
+            border-radius: 8px;
+            background: #e9a46f;
+        }
+
+        .box.one {
+            left: 8px;
             height: 65px;
-            border-radius: 7px 7px 4px 4px;
-            background: #f3c66b;
         }
 
-        .product::before {
-            content: "";
-            position: absolute;
-            width: 28px;
-            height: 10px;
-            background: white;
-            top: 22px;
-            left: 7px;
-            border-radius: 3px;
+        .box.two {
+            left: 57px;
+            background: #e88ca8;
         }
 
-        .p1 { left:12%; }
-        .p2 { left:25%; background:#ef7b62; }
-        .p3 { left:38%; background:#9cc8a1; }
-        .p4 { left:51%; background:#d59ad7; }
-        .p5 { left:64%; background:#f2b85e; }
-        .p6 { left:77%; background:#83b8db; }
-
-        /* COOKIES */
-
-        .cookie {
-            position:absolute;
-            bottom:18px;
-            width:80px;
-            height:80px;
-            border-radius:50%;
-            background:#d89a55;
-            box-shadow:inset -8px -8px 0 rgba(100,50,15,.12);
+        .box.three {
+            left: 108px;
+            background: #f2c56b;
+            height: 48px;
         }
 
-        .cookie::before {
-            content:"";
-            position:absolute;
-            width:12px;
-            height:12px;
-            border-radius:50%;
-            background:#69401f;
-            left:20px;
-            top:20px;
-            box-shadow:
-                30px 5px #69401f,
-                12px 35px #69401f,
-                42px 38px #69401f;
+        /* Login card */
+        .login-area {
+            background: rgba(255, 250, 246, 0.88);
+            padding: 55px 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .cookie.left-cookie {
-            left:8%;
+        .login-card {
+            width: 100%;
+            max-width: 360px;
         }
 
-        .cookie.right-cookie {
-            right:8%;
-            transform:scale(.75);
+        .login-card h2 {
+            font-size: 30px;
+            color: #42210f;
+            margin-bottom: 8px;
         }
 
-        .chocolate {
-            position:absolute;
-            bottom:12px;
-            left:42%;
-            width:115px;
-            height:55px;
-            background:#704329;
-            border-radius:8px;
-            transform:rotate(-5deg);
-        }
-
-        .chocolate::after {
-            content:"CHOCO";
-            position:absolute;
-            color:#ffe3b0;
-            font-weight:bold;
-            font-size:12px;
-            top:20px;
-            left:30px;
-        }
-
-        .note {
-            position:absolute;
-            top:18px;
-            right:25px;
-            background:#fff2a8;
-            padding:15px 20px;
-            transform:rotate(4deg);
-            font-weight:700;
-            box-shadow:0 5px 12px rgba(50,30,10,.1);
-        }
-
-        /* LOGIN CARD */
-
-        .card {
-            background:rgba(255,255,255,.95);
-            padding:45px;
-            border-radius:30px;
-            box-shadow:0 25px 70px rgba(70,40,20,.14);
-            max-width:520px;
-            width:100%;
-            margin:auto;
-        }
-
-        .shop-icon {
-            width:75px;
-            height:75px;
-            margin:auto;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background:#fff0e8;
-            border-radius:24px;
-            font-size:40px;
-        }
-
-        .card h2 {
-            text-align:center;
-            font-size:34px;
-            margin-top:20px;
-        }
-
-        .subtitle {
-            text-align:center;
-            color:#77706d;
-            margin:10px 0 30px;
-            line-height:1.5;
+        .login-card .description {
+            color: #8a6a5a;
+            margin-bottom: 30px;
+            font-size: 14px;
         }
 
         .input-group {
-            margin-bottom:20px;
+            margin-bottom: 18px;
         }
 
         .input-group label {
-            display:block;
-            font-size:15px;
-            font-weight:700;
-            margin-bottom:8px;
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #69402d;
+            margin-bottom: 8px;
         }
 
-        .input-box {
-            position:relative;
+        .input-group input {
+            width: 100%;
+            padding: 15px 16px;
+            border: 1.5px solid #ead4c5;
+            border-radius: 13px;
+            outline: none;
+            background: #fff;
+            color: #3b2418;
+            font-size: 15px;
+            transition: 0.25s;
         }
 
-        .input-box span {
-            position:absolute;
-            left:16px;
-            top:50%;
-            transform:translateY(-50%);
-            font-size:20px;
-        }
-
-        input {
-            width:100%;
-            padding:15px 16px 15px 50px;
-            border:1.5px solid #ddd5d0;
-            border-radius:12px;
-            font-size:15px;
-            outline:none;
-            transition:.25s;
-        }
-
-        input:focus {
-            border-color:#ef6b4e;
-            box-shadow:0 0 0 4px rgba(239,107,78,.10);
-        }
-
-        .options {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin:10px 0 22px;
-            font-size:13px;
-        }
-
-        .remember {
-            display:flex;
-            align-items:center;
-            gap:7px;
-            color:#706965;
-        }
-
-        .remember input {
-            width:auto;
-        }
-
-        .forgot {
-            color:#ef654c;
-            text-decoration:none;
-            font-weight:600;
+        .input-group input:focus {
+            border-color: #c15b35;
+            box-shadow: 0 0 0 4px rgba(193, 91, 53, 0.10);
         }
 
         .login-btn {
-            width:100%;
-            border:none;
-            padding:16px;
-            border-radius:13px;
-            background:linear-gradient(135deg,#ef6b4e,#f28a62);
-            color:white;
-            font-size:17px;
-            font-weight:700;
-            cursor:pointer;
-            transition:.25s;
-            box-shadow:0 10px 20px rgba(239,107,78,.25);
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 15px;
+            background: linear-gradient(135deg, #7c3f20, #c15b35);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(124, 63, 32, 0.22);
+            transition: 0.25s;
         }
 
         .login-btn:hover {
-            transform:translateY(-2px);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(124, 63, 32, 0.28);
         }
 
         .divider {
-            display:flex;
-            align-items:center;
-            gap:12px;
-            margin:25px 0;
-            color:#aaa09a;
-            font-size:13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 25px 0;
+            color: #b19485;
+            font-size: 12px;
         }
 
         .divider::before,
         .divider::after {
-            content:"";
-            height:1px;
-            background:#e4ddd8;
-            flex:1;
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #ead8cc;
         }
 
-        .google-btn {
-            width:100%;
-            padding:14px;
-            border-radius:12px;
-            border:1px solid #ddd5d0;
-            background:white;
-            font-size:15px;
-            font-weight:600;
-            cursor:pointer;
+        .register-box {
+            text-align: center;
+            padding: 18px;
+            border-radius: 16px;
+            background: #fff7ef;
+            border: 1px solid #f0dccd;
         }
 
-        .google-btn:hover {
-            background:#fafafa;
+        .register-box p {
+            font-size: 13px;
+            color: #806457;
+            margin-bottom: 8px;
         }
 
-        .register {
-            text-align:center;
-            margin-top:25px;
-            color:#706965;
-            font-size:14px;
+        .register-link {
+            color: #a84f2e;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
         }
 
-        .register a {
-            color:#ef654c;
-            font-weight:700;
-            text-decoration:none;
+        .register-link:hover {
+            color: #6f321d;
+            text-decoration: underline;
         }
 
-        .secure {
-            text-align:center;
-            margin-top:22px;
-            font-size:12px;
-            color:#99918d;
+        .demo-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #9a7b6c;
         }
 
-        @media(max-width:900px) {
+        /* Responsive */
+        @media (max-width: 800px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 45px 35px;
+                min-height: 420px;
+            }
+
+            .store-art {
+                display: none;
+            }
+
+            .login-area {
+                padding: 45px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page {
+                padding: 15px;
+            }
 
             .container {
-                grid-template-columns:1fr;
+                border-radius: 24px;
             }
 
-            .left {
-                text-align:center;
+            .welcome {
+                padding: 35px 25px;
             }
 
-            .description {
-                margin:auto;
+            .login-area {
+                padding: 35px 22px;
             }
 
-            .features {
-                justify-content:center;
-            }
-
-            .store-scene {
-                max-width:650px;
-                margin:35px auto;
-            }
-        }
-
-        @media(max-width:500px) {
-
-            .heading {
-                font-size:45px;
-            }
-
-            .card {
-                padding:30px 22px;
+            h1 {
+                font-size: 40px;
             }
         }
     </style>
@@ -449,163 +351,106 @@
 
 <body>
 
-<div class="bubble one"></div>
-<div class="bubble two"></div>
-<div class="bubble three"></div>
+<div class="circle one"></div>
+<div class="circle two"></div>
 
-<div class="container">
+<div class="page">
 
-    <!-- LEFT SIDE -->
+    <div class="container">
 
-    <section class="left">
+        <!-- WELCOME SECTION -->
+        <section class="welcome">
 
-        <div class="brand">
-            <span class="brand-icon">🛒</span>
-            Store<span>App</span>
-        </div>
-
-        <h1 class="heading">
-            Store<br>
-            Management<br>
-            <span class="orange">System</span>
-        </h1>
-
-        <p class="description">
-            Manage products, handle billing, track stock and
-            generate reports — all from one simple store management system.
-        </p>
-
-        <div class="features">
-            <div class="feature">📦 Manage Products</div>
-            <div class="feature">🧾 Smart Billing</div>
-            <div class="feature">📊 Track Inventory</div>
-            <div class="feature">📈 View Reports</div>
-        </div>
-
-        <div class="store-scene">
-
-            <div class="shelf">
-                <div class="product p1"></div>
-                <div class="product p2"></div>
-                <div class="product p3"></div>
-                <div class="product p4"></div>
-                <div class="product p5"></div>
-                <div class="product p6"></div>
+            <div class="brand">
+                <div class="brand-icon">🛍</div>
+                STORE MANAGER
             </div>
 
-            <div class="note">
-                📝 Small Store<br>
-                Big Possibilities
+            <h1>
+                Manage your<br>
+                <span>store smarter.</span>
+            </h1>
+
+            <p class="subtitle">
+                A simple workspace for store owners to manage products,
+                inventory, billing and sales reports — all in one place.
+            </p>
+
+            <div class="features">
+                <div class="feature">📦 Inventory</div>
+                <div class="feature">🧾 Billing</div>
+                <div class="feature">📊 Reports</div>
+                <div class="feature">🔄 Restocking</div>
             </div>
 
-            <div class="cookie left-cookie"></div>
-            <div class="cookie right-cookie"></div>
+            <div class="store-art">
+                <div class="box one"></div>
+                <div class="box two"></div>
+                <div class="box three"></div>
+                <div class="shelf"></div>
+            </div>
 
-            <div class="chocolate"></div>
+        </section>
 
-        </div>
+        <!-- LOGIN SECTION -->
+        <section class="login-area">
 
-    </section>
+            <div class="login-card">
 
+                <h2>Store Owner Login</h2>
 
-    <!-- LOGIN CARD -->
+                <p class="description">
+                    Sign in to manage your store.
+                </p>
 
-    <section class="card">
+                <!-- KEEPING YOUR EXISTING LOGIN ENDPOINT -->
+                <form action="login" method="post">
 
-        <div class="shop-icon">🏪</div>
+                    <div class="input-group">
+                        <label for="email">EMAIL ADDRESS</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+                    </div>
 
-        <h2>Welcome Back!</h2>
+                    <div class="input-group">
+                        <label for="password">PASSWORD</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required>
+                    </div>
 
-        <p class="subtitle">
-            Login to continue to your Store Management System.
-        </p>
+                    <button type="submit" class="login-btn">
+                        Sign In →
+                    </button>
 
-        <form action="login" method="post">
+                </form>
 
-            <div class="input-group">
+                <div class="divider">NEW STORE OWNER?</div>
 
-                <label for="email">
-                    Gmail Address
-                </label>
+                <div class="register-box">
+                    <p>Create your store owner account</p>
 
-                <div class="input-box">
-                    <span>✉️</span>
+                    <a href="register.html" class="register-link">
+                        Create New Account →
+                    </a>
+                </div>
 
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="youremail@gmail.com"
-                        required
-                        autocomplete="email">
+                <div class="demo-note">
+                    Secure access for store management
                 </div>
 
             </div>
 
+        </section>
 
-            <div class="input-group">
-
-                <label for="password">
-                    Password
-                </label>
-
-                <div class="input-box">
-                    <span>🔒</span>
-
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        required
-                        autocomplete="current-password">
-                </div>
-
-            </div>
-
-
-            <div class="options">
-
-                <label class="remember">
-                    <input type="checkbox">
-                    Remember me
-                </label>
-
-                <a href="#" class="forgot">
-                    Forgot password?
-                </a>
-
-            </div>
-
-
-            <button type="submit" class="login-btn">
-                Login &nbsp; →
-            </button>
-
-        </form>
-
-
-        <div class="divider">
-            OR
-        </div>
-
-
-        <button type="button" class="google-btn">
-            🌈 &nbsp; Continue with Google
-        </button>
-
-
-        <div class="register">
-            New to StoreApp?
-            <a href="register.html">Create an account</a>
-        </div>
-
-
-        <div class="secure">
-            🔐 Secure Store Management System
-        </div>
-
-    </section>
+    </div>
 
 </div>
 
